@@ -163,3 +163,46 @@ source.getContentDetails = function (url) {
     fields.subtitles = [];
     return new PlatformVideoDetails(fields);
 };
+
+// Podcasts matching a query (the API returns at most a handful).
+function suggestPrograms(query) {
+    const data = apiGet("/suggestions?search=" + encodeURIComponent(query));
+    return (data && data.items && data.items.programs) || [];
+}
+
+// Newest episodes of each program, skipping programs that fail to load.
+function latestEpisodes(programs, perProgram) {
+    const results = [];
+    for (const program of programs) {
+        try {
+            const data = fetchAudios(program.id, 1, perProgram);
+            for (const audio of data.items || []) {
+                results.push(audioToVideo(audio, program));
+            }
+        } catch (e) {
+            log("iVoox: skipping program " + program.id + ": " + e);
+        }
+    }
+    return results;
+}
+
+source.getHome = function () {
+    const programs = apiGet("/featured-programs/origin/es") || [];
+    return new ContentPager(latestEpisodes(programs, 1), false);
+};
+
+source.searchSuggestions = function (query) {
+    return suggestPrograms(query).map((p) => p.name);
+};
+
+source.getSearchCapabilities = function () {
+    return { types: [Type.Feed.Mixed], sorts: [], filters: [] };
+};
+
+source.search = function (query) {
+    return new ContentPager(latestEpisodes(suggestPrograms(query), 5), false);
+};
+
+source.searchChannels = function (query) {
+    return new ChannelPager(suggestPrograms(query).map(programToChannel), false);
+};
