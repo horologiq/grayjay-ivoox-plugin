@@ -144,7 +144,7 @@ source.getContentDetails = function (url) {
     const audio = apiGet("/audios/" + audioIdFromUrl(url));
     const fields = audioFields(audio, audio.program);
     fields.description = audio.description || "";
-    fields.video = new UnMuxedVideoDescriptor(
+    fields.video = new UnMuxVideoSourceDescriptor(
         [],
         [
             new AudioUrlSource({

@@ -7,7 +7,7 @@
     "sourceUrl": "https://raw.githubusercontent.com/horologiq/grayjay-ivoox-plugin/main/IvooxConfig.json",
     "repositoryUrl": "https://github.com/horologiq/grayjay-ivoox-plugin",
     "scriptUrl": "https://raw.githubusercontent.com/horologiq/grayjay-ivoox-plugin/main/IvooxScript.js",
-    "version": 2,
+    "version": 3,
     "iconUrl": "https://raw.githubusercontent.com/horologiq/grayjay-ivoox-plugin/main/IvooxIcon.png",
     "id": "f407b4c3-3c6e-4e96-a901-89154810dfe7",
     "scriptSignature": "",

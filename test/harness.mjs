@@ -62,7 +62,7 @@ g.PlatformVideo = class extends Fields {};
 g.PlatformVideoDetails = class extends g.PlatformVideo {};
 g.PlatformChannel = class extends Fields {};
 g.AudioUrlSource = class extends Fields {};
-g.UnMuxedVideoDescriptor = class {
+g.UnMuxVideoSourceDescriptor = class {
     constructor(videoSources, audioSources) {
         Object.assign(this, { videoSources, audioSources });
     }
