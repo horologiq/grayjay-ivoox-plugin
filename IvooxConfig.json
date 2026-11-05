@@ -1,0 +1,28 @@
+{
+    "name": "iVoox",
+    "platformUrl": "https://www.ivoox.com/",
+    "description": "Podcasts y audios de iVoox",
+    "author": "horologiq",
+    "authorUrl": "",
+    "sourceUrl": "",
+    "repositoryUrl": "",
+    "scriptUrl": "./IvooxScript.js",
+    "version": 1,
+    "iconUrl": "./IvooxIcon.png",
+    "id": "f407b4c3-3c6e-4e96-a901-89154810dfe7",
+    "scriptSignature": "",
+    "scriptPublicKey": "",
+    "packages": [
+        "Http"
+    ],
+    "allowEval": false,
+    "allowUrls": [
+        "www.ivoox.com",
+        "ivoox.com",
+        "vcore-web.ivoox.com",
+        "static-1.ivoox.com",
+        "img-static.ivoox.com",
+        "ivoox.mc.tritondigital.com"
+    ],
+    "settings": []
+}
