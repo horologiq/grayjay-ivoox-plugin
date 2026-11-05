@@ -139,3 +139,27 @@ source.getChannelContents = function (url) {
     const program = apiGet("/programs/" + programId);
     return new IvooxChannelPager(programId, program);
 };
+
+source.getContentDetails = function (url) {
+    const audio = apiGet("/audios/" + audioIdFromUrl(url));
+    const fields = audioFields(audio, audio.program);
+    fields.description = audio.description || "";
+    fields.video = new UnMuxedVideoDescriptor(
+        [],
+        [
+            new AudioUrlSource({
+                container: "audio/mpeg",
+                codec: "mp3",
+                name: "MP3",
+                bitrate: 128000,
+                duration: audio.duration || 0,
+                url: absUrl(audio.mediaUrl),
+                language: "Unknown",
+            }),
+        ]
+    );
+    fields.live = null;
+    fields.rating = new RatingLikes(audio.likes || 0);
+    fields.subtitles = [];
+    return new PlatformVideoDetails(fields);
+};
